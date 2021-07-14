@@ -4,13 +4,13 @@ const { MONGO_CONNECTION_STRING } = process.env;
 
 (async () => {
   try {
-    await mongoose.connect(MONGO_CONNECTION_STRING, {
+    const conn = await mongoose.connect(MONGO_CONNECTION_STRING, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
+      useFindAndModify: false,
       useCreateIndex: true,
     });
-
-    console.log(`MongoDB Connected!`)
+    console.log(`MongoDB Connected: ${conn.connection.host}`)
   } catch (e) {
     console.log(e);
   }

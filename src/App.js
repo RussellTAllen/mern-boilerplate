@@ -3,7 +3,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 function App() {
-  const [todos, setTodos] = useState(null)
+  const [todos, setTodos] = useState([])
 
   useEffect(() => {
     getData()
@@ -12,8 +12,9 @@ function App() {
   async function getData(){
     await fetch('/api/todos')
     .then(response => {
-      setTodos(response)
-      console.log(response)
+      let data = response.json()
+      console.log(data)
+      setTodos()
     })
     .catch(err => {
       console.error('Error fetching data: '+err)
@@ -23,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <h1>Hello world</h1>
-      {}
+      <p>{todos}</p>
     </div>
   );
 }

@@ -8,7 +8,10 @@ const TodoSchema = new mongoose.Schema({
   completed: {
     type: Boolean,
     required: true,
-  }
+  },
+ 
+},{
+    collection: 'todo-list'
 })
 
 module.exports = mongoose.model('Todo', TodoSchema)
